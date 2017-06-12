@@ -1,2 +1,59 @@
-<h1>Users#new</h1>
-<p>Find me in app/views/users/new.html.erb</p>
+<h1>SIGN UP</h1>
+<% unless @user.errors.full_messages.empty? %>
+
+  <% @user.errors.full_messages.each do |msg| %>
+    <p>
+      <%= msg %>
+    </p>
+  <% end %>
+<% end %>
+
+<%= form_for @user do |f| %>
+<p>
+  <%= f.label :name %>
+  <%= f.text_field :name, required: true %>
+</p>
+<p>
+  <%= f.label :surname %>
+  <%= f.text_field :surname, required: true %>
+</p>
+<p>
+  <%= f.label :email %>
+  <%= f.email_field :email, required: true %>
+</p>
+<p>
+  <%= f.label :password %>
+  <%= f.password_field :password, required: true %>
+</p>
+<p>
+  <%= f.label :password_confirmation %>
+  <%= f.password_field :password_confirmation, required: true %>
+</p>
+<p>
+  <%= f.label :Gender %>
+  <%= f.text_field :gender %>
+</p>
+
+<p>
+  <%= f.label :birthday %>
+  <%= f.date_field :birthday, required: true %>
+</p>
+<p>
+  <%= f.label :relationship %>
+  <%= f.text_field :relationship %>
+</p>
+<p>
+  <%= f.label :livingplace %>
+  <%= f.text_field :livingplace, required: true %>
+</p>
+<p>
+  <%= f.label :language %>
+  <%= f.text_field :language, required: true %>
+</p>
+<p>
+  <%= f.label :image %>
+  <%= f.url_field :image %>
+</p>
+
+<%= f.submit "Sign Up"%>
+<% end %>

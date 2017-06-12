@@ -1,17 +1,24 @@
 Rails.application.routes.draw do
-  get 'users/new'
+  get 'session/new'
 
-  get 'users/create'
+  get 'session/create'
 
-  get 'users/update'
+  get 'session/destroy'
 
-  get 'users/edit'
+  get 'session_controller/new'
 
-  get 'users/destroy'
+  get 'session_controller/create'
 
-  get 'users/index'
+  get 'session_controller/destroy'
 
-  get 'users/show'
+  get "/" => "pages#home"
 
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  get '/login' => 'session#new'
+  post '/login' => 'session#create'
+  delete '/logout' => 'session#destroy'
+
+
+  resources :users
+
+
 end

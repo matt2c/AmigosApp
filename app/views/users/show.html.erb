@@ -1,2 +1,19 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+
+<a href="/users" ></a>
+<% if @user.image %>
+  <%= image_tag( @user.image ) %>
+<% end %>
+<ul>
+  <li>name: <%= @user.name %></li>
+  <li>FamilyName: <%= @user.surname %></li>
+  <li>Email: <%= @user.email %></li>
+
+</ul>
+
+
+<div>
+
+<% if @current_user.present? && @current_user.id == @user.id %>
+<% end %>
+
+</div>

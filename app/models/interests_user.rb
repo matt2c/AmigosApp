@@ -1,0 +1,2 @@
+class InterestsUser < ApplicationRecord
+end

@@ -1,0 +1,2 @@
+class ActivitiesInterest < ApplicationRecord
+end

@@ -1,0 +1,26 @@
+<div>
+<% if flash[:login_error] %>
+  <p>
+    <%= flash[:login_error] %>
+  </p>
+<% end %>
+  <br><br>
+<%= form_tag "/login" do %>
+
+<div>
+  <form>
+    <div>
+    <%= label_tag :email %>
+    <%= email_field_tag :email %>
+   </div>
+   <div>
+    <%= label_tag :password %>
+    <%= password_field_tag :password %>
+  </div>
+  <a><i>perm_identity</i><div><%= submit_tag "Login" %></div></a>
+</div>
+
+<% end %>
+</form>
+
+</div>
