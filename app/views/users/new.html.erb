@@ -1,6 +1,5 @@
 <h1>SIGN UP</h1>
 <% unless @user.errors.full_messages.empty? %>
-
   <% @user.errors.full_messages.each do |msg| %>
     <p>
       <%= msg %>
@@ -33,7 +32,6 @@
   <%= f.label :Gender %>
   <%= f.text_field :gender %>
 </p>
-
 <p>
   <%= f.label :birthday %>
   <%= f.date_field :birthday, required: true %>
@@ -52,7 +50,7 @@
 </p>
 <p>
   <%= f.label :image %>
-  <%= f.url_field :image %>
+  <%= f.file_field :image %>
 </p>
 
 <%= f.submit "Sign Up"%>

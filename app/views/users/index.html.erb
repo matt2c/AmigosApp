@@ -1,2 +1,34 @@
 <h1>Users#index</h1>
 <p>Find me in app/views/users/index.html.erb</p>
+
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAxeAbvMpzSxjfYXVRsxH9F1mmUjiKZ9OU&libraries=visualization"></script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAxeAbvMpzSxjfYXVRsxH9F1mmUjiKZ9OU&libraries=places"></script>
+<script>
+      function initMap() {
+          var userPos = {
+              lat: <%= @users.first.latitude %>,
+              lng: <%= @users.first.longitude %>
+          };
+          // Using markers array from above, saved this to variable
+          var locs = <%= @markers.to_json.html_safe %>
+          // Create map, rendering to the div with id of map, use userPos as the center
+          var map = new google.maps.Map(document.querySelector("#map"), {
+              zoom: 12,
+              center: userPos
+          });
+          var locs = [];
+          <% @users.each do |user| %>
+            locs.push({lat:<%=user.latitude%>, lng:<%=user.longitude%>})
+          <% end %>
+
+
+          for (i = 0; i < locs.length; i++) {
+              var marker = new google.maps.Marker({
+                  position: new google.maps.LatLng(locs[i].lat, locs[i].lng),
+                  map: map
+              })
+          }
+      }
+      initMap();
+  </script>

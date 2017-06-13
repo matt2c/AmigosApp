@@ -1,0 +1,19 @@
+---
+development:
+  cloud_name: dq3ic1phs
+  api_key: '893722959269885'
+  api_secret: XvYjiLHa8Fds3WF4Z3W51rGYmoU
+  enhance_image_tag: true
+  static_image_support: false
+production:
+  cloud_name: dq3ic1phs
+  api_key: '893722959269885'
+  api_secret: XvYjiLHa8Fds3WF4Z3W51rGYmoU
+  enhance_image_tag: true
+  static_image_support: true
+test:
+  cloud_name: dq3ic1phs
+  api_key: '893722959269885'
+  api_secret: XvYjiLHa8Fds3WF4Z3W51rGYmoU
+  enhance_image_tag: true
+  static_image_support: false

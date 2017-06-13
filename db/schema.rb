@@ -17,8 +17,8 @@ ActiveRecord::Schema.define(version: 20170612023538) do
 
   create_table "activities", force: :cascade do |t|
     t.text     "name"
-    t.datetime "start_time"
-    t.datetime "end_time"
+    t.datetime "event_date"
+    t.datetime "event_time"
     t.text     "description"
     t.text     "location"
     t.text     "image"

@@ -1,2 +1,52 @@
-<h1>Users#edit</h1>
-<p>Find me in app/views/users/edit.html.erb</p>
+<h1>Edit Profile</h1>
+<%= form_for(@user, :html => { :multipart => true }, url: "/users/#{@user.id}")   do |f| %>
+    <p>
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+    </p>
+    <p>
+      <%= f.label :surname %>
+      <%= f.text_field :surname%>
+    </p>
+    <p>
+      <%= f.label :email %>
+      <%= f.email_field :email %>
+    </p>
+    <p>
+      <%= f.label :password %>
+      <%= f.password_field :password, required: true %>
+    </p>
+    <p>
+      <%= f.label :password_confirmation %>
+      <%= f.password_field :password_confirmation, required: true %>
+    </p>
+    <p>
+      <%= f.label :Gender %>
+      <%= f.text_field :gender %>
+    </p>
+    <p>
+      <%= f.label :birthday %>
+      <%= f.date_field :birthday %>
+    </p>
+    <p>
+      <%= f.label :relationship %>
+      <%= f.text_field :relationship %>
+    </p>
+    <p>
+      <%= f.label :livingplace %>
+      <%= f.text_field :livingplace %>
+    </p>
+    <p>
+      <%= f.label :language %>
+      <%= f.text_field :language %>
+    </p>
+    <p>
+      <%= f.label :image %>
+      <%= f.file_field :image %>
+    </p>
+
+    <a class="waves-effect waves-light btn"><%= f.submit "Update Profile" %></a>
+    <a class="waves-effect waves-light btn" href="">
+      <%= link_to "Delete Profile", @user, method: :delete, data: { confirm: 'Are you sure?' } %>
+    </a>
+    <% end %>
