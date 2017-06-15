@@ -1,0 +1,51 @@
+<% if @activity.image %>
+  <%= image_tag( @activity.image ) %>
+<% end %>
+
+<ul>
+  <li>Name: <%= @activity.name %></li>
+  <li>Date of the event: <%= @activity.event_date %></li>
+  <li>Time of the event: <%= @activity.event_time %></li>
+  <li>Location: <%= @activity.location %></li>
+  <li>Description: <%= @activity.description %></li>
+</ul>
+
+<div class="controls">
+  <% if @current_user.present? && @current_user.id == @activity.user_id %>
+  <%= link_to("Edit Activity", "/activities/#{@activity.id}/edit") %>
+  <%= link_to("Delete Activity", "/activities/#{@activity.id}", method: :delete, data: { confirm: "Are you sure?" }) %>
+  <% else %>
+  <% end %>
+</div>
+
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAxeAbvMpzSxjfYXVRsxH9F1mmUjiKZ9OU&libraries=visualization"></script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAxeAbvMpzSxjfYXVRsxH9F1mmUjiKZ9OU&libraries=places"></script>
+<script>
+      function initMap() {
+          var activityPos = {
+              lat: <%= @activity.latitude %>,
+              lng: <%= @activity.longitude %>
+          };
+          // Using markers array from above, saved this to variable
+          var locs = <%= @markers.to_json.html_safe %>
+          // Create map, rendering to the div with id of map, use activityPos as the center
+          var map = new google.maps.Map(document.querySelector("#map"), {
+              zoom: 12,
+              center: activityPos
+          });
+          var locs = [];
+          <% @activity %>
+            locs.push({lat:<%=@activity.latitude%>, lng:<%=@activity.longitude%>})
+
+
+          for (i = 0; i < locs.length; i++) {
+              var marker = new google.maps.Marker({
+                  position: new google.maps.LatLng(locs[i].lat, locs[i].lng),
+                  map: map
+              })
+          }
+      }
+
+      initMap();
+  </script>

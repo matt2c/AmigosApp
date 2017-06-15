@@ -1,0 +1,33 @@
+<% if @current_user.present? && @current_user.id == @user.id %>
+  <div class="row center">
+    <a href="/activities/new" class="waves-effect waves-light btn blue">Create an activity</a>
+ </div>
+ <% end %>
+
+
+  <div class="row">
+      <div class="col s2">
+      </div>
+
+      <div class="col s8">
+        <% @activities.each do |activity| %>
+        <div class="col s12 m6">
+          <div class="card">
+            <div class="card-image">
+              <%= link_to(image_tag(activity.image,class:"activity_image")) %>
+              <% if @current_user.present? && @current_user.id == @user.id %>
+              <a href="/activities/<%= activity.id %>/edit" class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">mode_edit</i></a>
+              <% end %>
+            </div>
+            <div class="card-content">
+              <span class="card-title"><%= activity.name %></span>
+              <p><%= activity.event_date %><%= activity.event_time %></p>
+            </div>
+          </div>
+        </div>
+        <% end %>
+      </div>
+
+      <div class="col s2">
+      </div>
+  </div>

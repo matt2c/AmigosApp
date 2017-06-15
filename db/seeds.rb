@@ -36,14 +36,38 @@ p "Activities: #{ Activity.count }"
 Interest.destroy_all
 
 interest1 = Interest.create(name: "Programming")
+interest1.activities << activity1
 interest2 = Interest.create(name: "Drinking")
+interest2.activities << activity2
 interest3 = Interest.create(name: "Watch Movies")
+interest3.activities << activity3
 interest4 = Interest.create(name: "Playing Golf")
+interest4.activities << activity4
 interest5 = Interest.create(name: "Dancing")
+interest5.activities << activity5
 interest6 = Interest.create(name: "Sports")
+interest6.activities << activity6
 interest7 = Interest.create(name: "Science")
+interest7.activities << activity7
 interest8 = Interest.create(name: "Fishing")
+interest8.activities << activity8
 interest9 = Interest.create(name: "Surfing")
+interest9.activities << activity9
 interest10 = Interest.create(name: "Fashion")
+interest10.activities << activity9
 
 p "Interests: #{ Interest.count }"
+
+user1.interests << interest1 << interest2 << interest5 << interest10
+user2.interests << interest2
+user3.interests << interest3
+user4.interests << interest4
+user5.interests << interest5
+user6.interests << interest6
+user7.interests << interest7
+user8.interests << interest8
+user9.interests << interest9
+user10.interests << interest10
+user11.interests << interest10
+user12.interests << interest6
+user13.interests << interest8

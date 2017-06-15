@@ -8,6 +8,8 @@ class CreateActivities < ActiveRecord::Migration[5.0]
       t.text :location
       t.text :image
       t.integer :user_id
+      t.float :latitude
+      t.float :longitude
 
       t.timestamps
     end

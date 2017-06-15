@@ -13,3 +13,11 @@
  *= require_tree .
  *= require_self
  */
+nav .nav-wrapper {
+  color: #3d4c74
+}
+
+.brand-logo img {
+  width: 130px;
+  height: 50px;
+}

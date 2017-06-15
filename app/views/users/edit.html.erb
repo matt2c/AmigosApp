@@ -1,5 +1,5 @@
 <h1>Edit Profile</h1>
-<%= form_for(@user, :html => { :multipart => true }, url: "/users/#{@user.id}")   do |f| %>
+<%= form_for(@user, :html => { :multipart => true }, url: "/users/#{@user.id}")  do |f| %>
     <p>
       <%= f.label :name %>
       <%= f.text_field :name %>
@@ -45,8 +45,65 @@
       <%= f.file_field :image %>
     </p>
 
-    <a class="waves-effect waves-light btn"><%= f.submit "Update Profile" %></a>
-    <a class="waves-effect waves-light btn" href="">
-      <%= link_to "Delete Profile", @user, method: :delete, data: { confirm: 'Are you sure?' } %>
-    </a>
+    <p>
+      <div class="chips chips-autocomplete"></div>
+    </p>
+
+
+    <a class="waves-effect waves-teal btn-flat blue"><%= f.submit "Update Profile" %></a>
+
     <% end %>
+
+
+
+<script type="text/javascript">
+var autoCompeleteData = {
+  <% @interests.each do |interest| %>
+  "<%= interest.name %>":null,
+  <% end %>
+};
+var allinterests = {
+  <% @interests.each do |interest| %>
+  "<%= interest.name %>":<%= interest.id %>,
+  <% end %>
+};
+var userInterests = [
+  <% @user.interests.each do |interest| %>
+{tag:  "<%= interest.name %>"
+,id:<%= interest.id %>},
+  <% end %>
+];
+var token = "<%= form_authenticity_token %>"
+
+  $(function() {
+    $('.chips-autocomplete').material_chip({
+      data: userInterests,
+    autocompleteOptions: {
+      data: autoCompeleteData,
+      limit: Infinity,
+      minLength: 1
+    }
+  });
+  });
+  $('.chips-autocomplete').on('chip.add',function(e, chip){
+    var interestId = allinterests[chip.tag];
+    var url = "/users/addNewInterest/" + chip.tag;
+    if (interestId){
+      url = "/users/addInterest/" + interestId
+    }
+    $.post(url ,{'authenticity_token':token},
+    function(){
+    }).fail(function(){
+      alert('error');
+    });
+  });
+
+  $('.chips-autocomplete').on('chip.delete',function(e, chip){
+    var interestId = allinterests[chip.tag];
+    $.post("/users/removeInterest/" + interestId,{'authenticity_token':token},
+    function(){
+    }).fail(function(){
+      alert('error');
+    });
+  });
+</script>

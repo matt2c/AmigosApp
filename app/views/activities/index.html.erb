@@ -1,0 +1,31 @@
+<h1>Activities#index</h1>
+<p>Find me in app/views/activities/index.html.erb</p>
+
+
+@current_user.activity
+
+</div>
+<div class="col s8">
+ <p>suggested activities to <%= @current_user.name %></p>
+
+
+<div class="row" style="height:700px; overflow:scroll">
+
+ <% @acitivites.each do |activity| %>
+
+ <div class="col s12 m6">
+   <div class="card">
+     <div class="card-image">
+       <%= link_to(image_tag(activity.image,class:"activity_image")) %>
+       <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
+     </div>
+     <div class="card-content">
+       <span class="card-title">Activity 1</span>
+       <p><%= activity.description %></p>
+     </div>
+   </div>
+ </div>
+ <% end %>
+</div>
+
+</div>
